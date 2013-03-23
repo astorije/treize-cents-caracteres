@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+svg {
+  border: 1px solid red;
+}
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+<script>
+
+  // Limites de l’Île-de-France considérés
+  // Requête pour l’obtenir : select min(ymin(transform(setsrid(the_geom,2154), 4326))) from communes_simplifiees;
+  var min_lon = 1.44635812195709,
+  max_lon = 3.55901796978031,
+  min_lat = 48.1202959913403,
+  max_lat = 49.2413960984924;
+
+var width = 1000,
+    height = 669;
+
+    var latcos = Math.cos(48.5); 
+    var lon_width = (max_lon - min_lon) * latcos;
+    var lat_width = max_lat - min_lat;
+
+
+function proj(coord){
+  var x = (coord[0] - min_lon) / lon_width * latcos;
+  var y = (coord[1] - min_lat) / lat_width;
+
+  return [x * width, y * height]; 
+}
+
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+  var projected1 = proj([ min_lon, max_lat]);
+  var projected2 = proj([ max_lon, max_lat]);
+  var projected3 = proj([ max_lon, min_lat]);
+  var projected4 = proj([ min_lon, min_lat]);
+    svg.append("circle")
+    .attr("r", 30)
+    .attr("cx", projected[0] )
+    .attr("cy", projected[1] )
+    .style("fill", "#ddd");
+
+
+</script>
