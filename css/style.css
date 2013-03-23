@@ -1,3 +1,8 @@
 svg {
   border: 1px solid red;
 }
+
+text {
+  text-anchor: middle;
+  font-family: "Arial";
+}
