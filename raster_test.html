@@ -7,8 +7,7 @@ svg {
 }
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
 <script>
 
   // Limites de l’Île-de-France considérés
@@ -34,22 +33,21 @@ function proj(coord){
 }
 
 
-var path = d3.geo.path()
-    .projection(projection);
 
 var svg = d3.select("body").append("svg")
   .attr("width", width)
   .attr("height", height);
 
-  var projected1 = proj([ min_lon, max_lat]);
-  var projected2 = proj([ max_lon, max_lat]);
-  var projected3 = proj([ max_lon, min_lat]);
-  var projected4 = proj([ min_lon, min_lat]);
+  var projected = proj([ 2, 49]);
     svg.append("circle")
     .attr("r", 30)
     .attr("cx", projected[0] )
     .attr("cy", projected[1] )
     .style("fill", "#ddd");
 
-
+    svg.append("image")
+   .attr("xlink:href", "idf.png")
+    .attr("width", width)
+    .attr("height", height)
+    .style("opacity", 0.1);
 </script>
