@@ -24,8 +24,7 @@ function proj(coord){
 
 var svg = d3.select("#map").append("svg")
   .attr("width", width)
-  .attr("height", height)
-  .style("fill", "#ddd");
+  .attr("height", height);
 
   svg.append("image")
   .attr("xlink:href", "img/idf-830.png")
@@ -44,7 +43,7 @@ d3.tsv("data/communes.csv", function(error, data) {
 
   g.append("circle")
     .attr("r", Math.sqrt(val)/10)
-    .style("fill", "#aaa");
+    .style("fill", "#6f5f5f");
 
   g.append("text")
     .text(d.NomCommune + " - " + val)
@@ -67,7 +66,7 @@ d3.tsv("data/communes.csv", function(error, data) {
           .attr("r", 0)
           .attr("fill", "none")
           .attr("stroke-width", "1.5px")
-          .style("stroke", "blue")
+          .style("stroke", "#6f5f5f")
           .style("stroke-opacity", 1)
         .transition()
           .duration(1000)
