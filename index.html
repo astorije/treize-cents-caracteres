@@ -8,23 +8,70 @@
 
     <script src="js/d3.v3.min.js"></script>
     <script src="js/jquery.min.js"></script>
+
+    <script src="js/main.js"></script>
   </head>
   <body>
     <header>
-      Logo
+      <div id="logo">
+        Logo
+      </div>
 
-      Titre
+      <div id="title">
+        Titre
+      </div>
 
-      Thème
+      <div id="chooser">
+        Thème
+
+        <ul>
+          <li id="theme1">&nbsp;</li>
+          <li id="theme2">&nbsp;</li>
+        </ul>
+      </div>
+
     </header>
 
-    <div>
-      Banques
-      Police
-      Gares
+    <section>
+      
+      <div id="criterias">
+        <ul>
+          <li>
+            <a href="#">
+              <img src="img/black_circle.png">
+              <img src="img/green_circle.png">
+              Banques de France
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="img/black_circle.png">
+              <img src="img/green_circle.png">
+              Villas
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="img/black_circle.png">
+              <img src="img/green_circle.png">
+              Police
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="img/black_circle.png">
+              <img src="img/green_circle.png">
+              Gares
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      Carte
-    </div>
+      <div id="map">
+        <img src="idf_transparent.png">
+      </div>
+
+    </section>
 
   </body>
 </html>

@@ -117,4 +117,20 @@ $(document).ready(function() {
     return false;
   });
 
+  var criteriasNormalWidth = $("#criterias").width()
+  , criteriasCompactWidth = 60;
+  $("#criterias").width(criteriasCompactWidth);
+  $("#criterias").hover(function() {
+    $(this).animate({"width": criteriasNormalWidth});
+  }, function() {
+    $(this).animate({"width": criteriasCompactWidth});
+  });
+
+  $("#criterias img:last-of-type").hide();
+  $("#criterias a").click(function() {
+    $(this).find("img:last-of-type").toggle();
+    $(this).find("img:first-of-type").toggle();
+    $(this).toggleClass("active");
+  });
+
 });
