@@ -45,6 +45,8 @@ d3.tsv("data/communes.csv", function(error, data) {
     .style("fill", "black")
     .style("display", "none")
     .style("visibility", "hidden");
+
+  g.style("z-index", 0);
   });
 
   d3.selectAll("g")
@@ -69,7 +71,8 @@ d3.tsv("data/communes.csv", function(error, data) {
           .attr("r", 50)
           .style("stroke-opacity", 0)
           .remove();
-        
+      
+      d3.select(this).style("z-index", 10);
     })
     .on('mouseout', function(e) {
       d3.select(this)
@@ -78,9 +81,11 @@ d3.tsv("data/communes.csv", function(error, data) {
         .duration("500")
         .style("display", "none")
         .style("visibility", "hidden");
+      d3.select(this).style("z-index", 0);
     });
 });
 
+/*
 svg.selectAll("circle").on('mouseover', function(e) {
           if (!packer.animating) {
             var g = d3.select(this),
@@ -98,7 +103,7 @@ svg.selectAll("circle").on('mouseover', function(e) {
                 .text(t);
           }
   });
-
+*/
 
 $(document).ready(function() {
 
