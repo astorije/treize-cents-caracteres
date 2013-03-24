@@ -30,7 +30,7 @@ var colors = {
   salaire_median :{ brewer: 'Blues',  range: function(d){return get_brewer_class(d.median,   [15000, 25000, 35000]);} },
   tx_hlm :        { brewer: 'RdGy',   range: function(d){return get_brewer_class(d.tx_hlm,   [5 ,15, 30]);} },
   tx_appart :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.tx_appart,[30, 60, 80]);} },
-  augment1  :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.agument1,[-1000, 0, 1000]);} },
+  augment1  :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.augment1,[-1000, 0, 1000]);} },
   augment2  :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.augment2,[-1000, 0, 1000]);} },
   augment3  :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.augment3,[-1000, 0, 1000]);} },
   augment4  :     { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.augment4,[-1000, 0, 1000]);} },
@@ -192,16 +192,15 @@ $(document).ready(function() {
   /*$("#criterias a.fifth").click(function() {
     render("tx_appart", "popref");
     $("#legend svg").attr("class", colors["tx_appart"].brewer);
-  });
+  });*/
 
-  $("#criterias a.six").click(function() {
-    setTimeout("render('gares', 'pop68');", 0);
-    setTimeout("render('gares', 'pop75');", 7500);
-    setTimeout("render('gares', 'pop82');", 15000);
-    setTimeout("render('gares', 'pop90');", 22500);
-    setTimeout("render('gares', 'pop99');", 30000);
-    setTimeout("render('gares', 'pop09');", 37500);
-    $("#legend svg").attr("class", colors["gares"].brewer);
+  /*$("#criterias a.sixth").click(function() {
+    setTimeout("render('augment1', 'area');", 0);
+    setTimeout("render('augment2', 'area');", 7500);
+    setTimeout("render('augment3', 'area');", 15000);
+    setTimeout("render('augment4', 'area');", 22500);
+    setTimeout("render('augment5', 'area');", 30000);
+    $("#legend svg").attr("class", colors["augment4"].brewer);
   });*/
 
   // 1 Transport
