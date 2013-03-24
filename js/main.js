@@ -35,12 +35,13 @@ var colors = {
 var sizes = {
   none: {scale: function(x){return 6;}, f: function(d){return 7;} },
   area: {scale: d3.scale.sqrt().domain([1, 5000]).range([1,10]), f: function(d){return d.surf;} }, 
-  pop99: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.p99_pop;} },
-  pop09: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.p09_pop;} },
-  pop90: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.d90_pop;} },
-  pop82: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.d82_pop;} },
-  pop75: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.d75_pop;} },
-  pop68: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(0.3), f: function(d){return d.d68_pop;} },
+  popref: {scale: d3.scale.pow().domain([1, 250000]).range([1,10]).exponent(.3), f: function(d){return d.p09_pop;} },
+  pop99: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.p99_pop, 100000);} },
+  pop09: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.p09_pop, 100000);} },
+  pop90: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.d90_pop, 100000);} },
+  pop82: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.d82_pop, 100000);} },
+  pop75: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.d75_pop, 100000);} },
+  pop68: {scale: d3.scale.pow().domain([1, 100000]).range([1,20]).exponent(3), f: function(d){return Math.min(d.d68_pop, 100000);} },
 };
 
 
@@ -136,17 +137,6 @@ d3.csv("data/communes.csv", function(error, data) {
 
 $(document).ready(function() {
 
-  $("a").click(function() {
-    svg.selectAll("circle")
-      .transition()
-      .duration("2000")
-      .delay(function(d, i) { return i; })
-      .style("fill", "green")
-      ;//.attr("r", 10);
-
-    return false;
-  });
-
   var criteriasNormalWidth = $("#criterias").width()
   , criteriasCompactWidth = 60;
   $("#criterias").width(criteriasCompactWidth);
@@ -161,10 +151,42 @@ $(document).ready(function() {
     $(this).find("img:last-of-type").toggle();
     $(this).find("img:first-of-type").toggle();
     $(this).toggleClass("active");
+  });
 
+  /*$("#criterias a.first").click(function() {
     render("tx_appart", "pop90");
     $("#legend svg").attr("class", colors["tx_appart"].brewer);
+  });*/
 
+  $("#criterias a.first").click(function() {
+    render("gares", "area");
+    $("#legend svg").attr("class", colors["gares"].brewer);
   });
+
+  $("#criterias a.second").click(function() {
+    render("salaire_median", "popref");
+    $("#legend svg").attr("class", colors["salaire_median"].brewer);
+  });
+
+  $("#criterias a.third").click(function() {
+    render("jeunesse", "popref");
+    $("#legend svg").attr("class", colors["jeunesse"].brewer);
+  });
+
+  $("#criterias a.fourth").click(function() {
+    setTimeout("render('gares', 'pop68');", 0);
+    setTimeout("render('gares', 'pop75');", 7500);
+    setTimeout("render('gares', 'pop82');", 15000);
+    setTimeout("render('gares', 'pop90');", 22500);
+    setTimeout("render('gares', 'pop99');", 30000);
+    setTimeout("render('gares', 'pop09');", 37500);
+    $("#legend svg").attr("class", colors["gares"].brewer);
+  });
+
+  // 1 Transport
+  // 2 Revenus
+  // 3 Jeunesse
+  // 4 Animation Population
+  // 5 Superficie (area)
 
 });
