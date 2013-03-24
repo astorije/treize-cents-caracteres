@@ -55,17 +55,22 @@ var svg = d3.select("#map").append("svg")
   .attr("height", height);
 
 function render(color, size){
-  var col = colors[color];
+/*  var col = colors[color];
   var siz = sizes[size];
   svg.attr("class", col.brewer);
+
+  console.log("truc");
 
   svg.selectAll("circle")
   .data(global_data)
   .transition()
-  .duration("2500")
+  .duration("0")
   .delay(function(d, i) { return i*2; })
-  .attr("r", function(d){ return siz.scale(parseFloat(siz.f(d)));})
+  .attr("r", function(d){ return siz.scale(parseFloat(siz.f(d)));});
+
+  svg.selectAll("circle")
   .attr("class", col.range);
+*/
 }
 
 function get_brewer_class(val, range){
@@ -92,10 +97,6 @@ d3.csv("data/communes.csv", function(error, data) {
     var g = svg.append("g")
       .attr("transform", "translate(" + coord[0] + ", " + (height - coord[1]) + ")");
 
-  /*g.append("circle")
-    .attr("r", Math.sqrt(val)/10)
-    .style("fill", "#6f5f5f");*/
-
   g.append("circle");
 
   g.append("text")
@@ -105,7 +106,7 @@ d3.csv("data/communes.csv", function(error, data) {
     .style("visibility", "hidden");
   });
 
-  render("none", "none");
+//  render("none", "none");
 
   d3.selectAll("circle")
     .on('mouseover', function(e) {
