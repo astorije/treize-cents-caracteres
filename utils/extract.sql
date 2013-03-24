@@ -24,4 +24,5 @@ COPY (
    LEFT JOIN insee_pop on (communes_simplifiees.insee::text = insee_pop.CODGEO)
    INNER JOIN type on (communes_simplifiees.insee=type.insee)
    INNER JOIN status_occupation on (status_occupation.insee = communes_simplifiees.insee)
+   ORDER BY lat desc
 ) to '/tmp/communes.csv' CSV HEADER
