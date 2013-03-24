@@ -80,7 +80,7 @@ d3.csv("data/communes.csv", function(error, data) {
   global_data = data;
 
   data.forEach(function(d) {
-    var val = parseFloat(d.Surface);
+    var val = parseFloat(d.surf);
     coord = proj([d.lon, d.lat]);
     
     var g = svg.append("g")
@@ -93,7 +93,7 @@ d3.csv("data/communes.csv", function(error, data) {
   g.append("circle");
 
   g.append("text")
-    .text(d.NomCommune + " - " + val)
+    .text(d.nomcom + " - " + val)
     .style("fill", "black")
     .style("display", "none")
     .style("visibility", "hidden");
@@ -101,36 +101,38 @@ d3.csv("data/communes.csv", function(error, data) {
 
   render("none", "none");
 
-  d3.selectAll("g")
+  d3.selectAll("circle")
     .on('mouseover', function(e) {
 
-      d3.select(this)
+      d3.select(this.parentNode)
       .select("text")
         .transition()
-        .duration("500")
-        .style("display", "block")
-        .style("visibility", "visible");
+            .style("display", "block")
+            .style("visibility", "visible")
+        .transition()
+          .duration("300")
+            .style("opacity", 1)
+        .transition()
+          .delay("1300")
+          .duration("200")
+          .style("opacity", 0)
+       .transition()
+          .delay("1500")
+          .style("display", "none")
+          .style("visibility", "hidden");
 
-        d3.select(this).append("circle")
+        d3.select(this.parentNode).append("circle")
           .attr("r", 0)
           .attr("fill", "none")
           .attr("stroke-width", "1.5px")
           .style("stroke", "#6f5f5f")
           .style("stroke-opacity", 1)
         .transition()
-          .duration(1000)
+          .duration(1500)
           .ease(Math.sqrt)
           .attr("r", 50)
           .style("stroke-opacity", 0)
           .remove();
-    })
-    .on('mouseout', function(e) {
-      d3.select(this)
-      .select("text")
-        .transition()
-        .duration("500")
-        .style("display", "none")
-        .style("visibility", "hidden");
     });
 });
 
@@ -163,6 +165,8 @@ $(document).ready(function() {
     $(this).toggleClass("active");
 
     render("tx_appart", "pop90");
+    $("#legend svg").attr("class", colors["tx_appart"].brewer);
+
   });
 
 });
