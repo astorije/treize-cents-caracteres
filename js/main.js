@@ -27,6 +27,12 @@ var svg = d3.select("body").append("svg")
   .attr("height", height)
   .style("fill", "#ddd");
 
+  svg.append("image")
+  .attr("xlink:href", "idf.png")
+  .attr("width", width)
+  .attr("height", height)
+  .style("opacity", 0.5);
+
 
 d3.tsv("data/communes.csv", function(error, data) {
   data.forEach(function(d) {
@@ -35,7 +41,7 @@ d3.tsv("data/communes.csv", function(error, data) {
     
     var g = svg.append("g")
       .attr("transform", "translate(" + coord[0] + ", " + (height - coord[1]) + ")");
-    
+
   g.append("circle")
     .attr("r", Math.sqrt(val)/10)
     .style("fill", "#aaa");
@@ -45,8 +51,6 @@ d3.tsv("data/communes.csv", function(error, data) {
     .style("fill", "black")
     .style("display", "none")
     .style("visibility", "hidden");
-
-  g.style("z-index", 0);
   });
 
   d3.selectAll("g")
@@ -71,8 +75,6 @@ d3.tsv("data/communes.csv", function(error, data) {
           .attr("r", 50)
           .style("stroke-opacity", 0)
           .remove();
-      
-      d3.select(this).style("z-index", 10);
     })
     .on('mouseout', function(e) {
       d3.select(this)
@@ -81,7 +83,6 @@ d3.tsv("data/communes.csv", function(error, data) {
         .duration("500")
         .style("display", "none")
         .style("visibility", "hidden");
-      d3.select(this).style("z-index", 0);
     });
 });
 
