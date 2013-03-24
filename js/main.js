@@ -58,8 +58,6 @@ function render(color, size){
   var col = colors[color];
   var siz = sizes[size];
 
-  console.log("truc");
-
   svg.selectAll("circle")
   .data(global_data)
   .transition()
@@ -167,11 +165,6 @@ $(document).ready(function() {
     $(this).addClass("active");
   });
 
-  /*$("#criterias a.first").click(function() {
-    render("tx_appart", "pop90");
-    $("#legend svg").attr("class", colors["tx_appart"].brewer);
-  });*/
-
   $("#criterias a.first").click(function() {
     render("gares", "area");
     $("#legend svg").attr("class", colors["gares"].brewer);
@@ -192,18 +185,18 @@ $(document).ready(function() {
     $("#legend svg").attr("class", colors["tx_hlm"].brewer);
   });
 
-  /*$("#criterias a.fifth").click(function() {
-    render("tx_appart", "popref");
-    $("#legend svg").attr("class", colors["tx_appart"].brewer);
-  });*/
-
-  /*$("#criterias a.sixth").click(function() {
+  $("#criterias a.fifth").click(function() {
     setTimeout("render('augment1', 'area');", 0);
     setTimeout("render('augment2', 'area');", 7500);
     setTimeout("render('augment3', 'area');", 15000);
     setTimeout("render('augment4', 'area');", 22500);
     setTimeout("render('augment5', 'area');", 30000);
     $("#legend svg").attr("class", colors["augment4"].brewer);
+  });
+
+  /*$("#criterias a.fifth").click(function() {
+    render("tx_appart", "popref");
+    $("#legend svg").attr("class", colors["tx_appart"].brewer);
   });*/
 
   // 1 Transport
