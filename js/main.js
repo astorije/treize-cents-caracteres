@@ -101,7 +101,7 @@ d3.csv("data/communes.csv", function(error, data) {
   g.append("circle");
 
   g.append("text")
-    .text(d.nomcom + " - " + val)
+    .text(d.nomcom)
     .style("fill", "black")
     .style("display", "none")
     .style("visibility", "hidden");
@@ -187,10 +187,10 @@ $(document).ready(function() {
 
   $("#criterias a.fifth").click(function() {
     setTimeout("render('augment1', 'area');", 0);
-    setTimeout("render('augment2', 'area');", 7500);
-    setTimeout("render('augment3', 'area');", 15000);
-    setTimeout("render('augment4', 'area');", 22500);
-    setTimeout("render('augment5', 'area');", 30000);
+    setTimeout("render('augment2', 'area');", 5000);
+    setTimeout("render('augment3', 'area');", 10000);
+    setTimeout("render('augment4', 'area');", 15000);
+    setTimeout("render('augment5', 'area');", 20000);
     $("#legend svg").attr("class", colors["augment4"].brewer);
   });
 
