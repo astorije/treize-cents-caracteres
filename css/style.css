@@ -2,6 +2,10 @@ text {
   text-anchor: middle;
 }
 
+.default rect {
+  fill: none;
+}
+
 circle.default {
   fill: #6f5f5f;
 }
@@ -31,10 +35,10 @@ a {
 }
 
 #logo {
-  height: 120px;
-  width: 115px;
+  height: 140px;
+  width: 140px;
   float: left;
-  background: url("../img/logo-1300.png");
+  background: url("../img/logo.png");
 }
 
 header {
@@ -48,13 +52,14 @@ header:after {
 }
 
 #title {
-  height: 25px;
-  width: 825px;
+  height: 35px;
+  width: 800px;
   float: left;
   margin-left: 20px;
+  font-size: 1.5rem;
   color: #6f5f5f;
   border-bottom: 4px solid #6f5f5f;
-  padding-top: 40px;
+  padding-top: 50px;
   text-transform: uppercase;
 }
 
