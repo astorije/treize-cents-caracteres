@@ -148,11 +148,14 @@ $(document).ready(function() {
     $(this).animate({"width": criteriasCompactWidth});
   });
 
-  $("#criterias img:last-of-type").hide();
+  $("#criterias img:first-of-type").hide();
   $("#criterias a").click(function() {
-    $(this).find("img:last-of-type").toggle();
-    $(this).find("img:first-of-type").toggle();
-    $(this).toggleClass("active");
+    $("#criterias img:first-of-type").hide();
+    $("#criterias img:last-of-type").show();
+    $(this).find("img:first-of-type").show();
+    $(this).find("img:last-of-type").hide();
+    $("#criterias a").removeClass("active");
+    $(this).addClass("active");
   });
 
   /*$("#criterias a.first").click(function() {
@@ -176,6 +179,16 @@ $(document).ready(function() {
   });
 
   $("#criterias a.fourth").click(function() {
+    render("tx_hlm", "popref");
+    $("#legend svg").attr("class", colors["tx_hlm"].brewer);
+  });
+
+  /*$("#criterias a.fifth").click(function() {
+    render("tx_appart", "popref");
+    $("#legend svg").attr("class", colors["tx_appart"].brewer);
+  });
+
+  $("#criterias a.six").click(function() {
     setTimeout("render('gares', 'pop68');", 0);
     setTimeout("render('gares', 'pop75');", 7500);
     setTimeout("render('gares', 'pop82');", 15000);
@@ -183,7 +196,7 @@ $(document).ready(function() {
     setTimeout("render('gares', 'pop99');", 30000);
     setTimeout("render('gares', 'pop09');", 37500);
     $("#legend svg").attr("class", colors["gares"].brewer);
-  });
+  });*/
 
   // 1 Transport
   // 2 Revenus
