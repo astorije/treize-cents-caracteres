@@ -16,7 +16,8 @@ COPY (
          insee_pop.d82_pop,
          insee_pop.d75_pop,
          insee_pop.d68_pop,
-         medrfuc10 as median
+         medrfuc10 as median,
+         nb_rp_app  * 100 / (nb_rp_app + nb_rp_aut + nb_rp_mi) as tx_appart
    FROM
          communes_simplifiees
    LEFT JOIN insee on (communes_simplifiees.insee::text = insee.CODGEO)
