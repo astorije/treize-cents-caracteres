@@ -30,53 +30,56 @@ var svg = d3.select("body").append("svg")
 
 d3.tsv("data/communes.csv", function(error, data) {
   data.forEach(function(d) {
+    var val = parseFloat(d.Surface);
     coord = proj([d.lon, d.lat]);
     
     var g = svg.append("g")
       .attr("transform", "translate(" + coord[0] + ", " + (height - coord[1]) + ")");
     
   g.append("circle")
-    .attr("r", 5)
-    .style("fill", "#ddd");
+    .attr("r", Math.sqrt(val)/10)
+    .style("fill", "#aaa");
 
   g.append("text")
-    .text("Truc")
+    .text(d.NomCommune + " - " + val)
     .style("fill", "black")
-    .attr("opacity", 0);
+    .style("display", "none")
+    .style("visibility", "hidden");
   });
+
+  d3.selectAll("g")
+    .on('mouseover', function(e) {
+
+      d3.select(this)
+      .select("text")
+        .transition()
+        .duration("500")
+        .style("display", "block")
+        .style("visibility", "visible");
+
+        d3.select(this).append("circle")
+          .attr("r", 0)
+          .attr("fill", "none")
+          .attr("stroke-width", "1.5px")
+          .style("stroke", "blue")
+          .style("stroke-opacity", 1)
+        .transition()
+          .duration(1000)
+          .ease(Math.sqrt)
+          .attr("r", 50)
+          .style("stroke-opacity", 0)
+          .remove();
+        
+    })
+    .on('mouseout', function(e) {
+      d3.select(this)
+      .select("text")
+        .transition()
+        .duration("500")
+        .style("display", "none")
+        .style("visibility", "hidden");
+    });
 });
-
-
-d3.selectAll("g")
-  .on('mouseover', function(e) {
-    d3.select(this)
-    .select("text")
-      .transition()
-      .duration("500")
-      .attr("opacity", 1);
-
-      d3.select(this).append("circle")
-        .attr("r", 0)
-        .attr("fill", "none")
-        .attr("stroke-width", "1.5px")
-        .style("stroke", "blue")
-        .style("stroke-opacity", 1)
-      .transition()
-        .duration(1000)
-        .ease(Math.sqrt)
-        .attr("r", 50)
-        .style("stroke-opacity", 0)
-        .remove();
-      
-  })
-  .on('mouseout', function(e) {
-    d3.select(this)
-    .select("text")
-      .transition()
-      .duration("500")
-      .attr("opacity", 0);
-  });
-
 
 svg.selectAll("circle").on('mouseover', function(e) {
           if (!packer.animating) {
