@@ -76,7 +76,7 @@ function get_brewer_class(val, range){
   .style("opacity", 0.5);
 
 
-d3.csv("data/communes2.csv", function(error, data) {
+d3.csv("data/communes.csv", function(error, data) {
   global_data = data;
 
   data.forEach(function(d) {
