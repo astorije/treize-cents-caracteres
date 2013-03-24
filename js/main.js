@@ -163,6 +163,8 @@ $(document).ready(function() {
     $(this).toggleClass("active");
 
     render("tx_appart", "pop90");
+    $("#legend svg").attr("class", colors["tx_appart"].brewer);
+
   });
 
 });

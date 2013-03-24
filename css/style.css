@@ -89,6 +89,12 @@ header:after {
   border-radius: 5px;
 }
 
+#criterias #legend {
+  width: 60px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
 #criterias a {
   display: block;
   padding: 15px;
