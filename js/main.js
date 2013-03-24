@@ -24,7 +24,7 @@ function proj(coord){
 var global_data;
 
 var colors = {
-  none:           { brewer: '',       range: function(d) { return "default"; }}, 
+  none:           { brewer: '',       range: function(d) { return null; }}, 
   jeunesse:       { brewer: 'RdYlGn', range: function(d){return get_brewer_class(d.jeunesse, [1.1, 2, 4]);} },
   gares :         { brewer: 'Blues',  range: function(d){return get_brewer_class(d.gares,    [10, 40, 80]);} },
   salaire_median :{ brewer: 'Blues',  range: function(d){return get_brewer_class(d.median,   [15000, 25000, 35000]);} },
@@ -55,29 +55,32 @@ var svg = d3.select("#map").append("svg")
   .attr("height", height);
 
 function render(color, size){
-/*  var col = colors[color];
+  var col = colors[color];
   var siz = sizes[size];
-  svg.attr("class", col.brewer);
 
   console.log("truc");
 
   svg.selectAll("circle")
   .data(global_data)
   .transition()
-  .duration("0")
+  .duration("2500")
   .delay(function(d, i) { return i*2; })
-  .attr("r", function(d){ return siz.scale(parseFloat(siz.f(d)));});
+  .attr("r", function(d){ return siz.scale(parseFloat(siz.f(d)));})
+  .style("fill", function(d){
+    var tmp = col.range(d);
+    if(tmp != null)
+      return colorbrewer[col.brewer]['4'][tmp];
+    else
+      return "#6f5f5f";
+  });
 
-  svg.selectAll("circle")
-  .attr("class", col.range);
-*/
 }
 
 function get_brewer_class(val, range){
-  if(val < range[0]) return "q0-4";
-  else if(val < range[1])  return "q1-4";
-  else if(val < range[2])  return "q2-4";
-  else return "q3-4";
+  if(val < range[0]) return 0;
+  else if(val < range[1])  return 1;
+  else if(val < range[2])  return 2;
+  else return 3;
 }
 
   svg.append("image")
@@ -106,7 +109,7 @@ d3.csv("data/communes.csv", function(error, data) {
     .style("visibility", "hidden");
   });
 
-//  render("none", "none");
+  render("none", "none");
 
   d3.selectAll("circle")
     .on('mouseover', function(e) {
