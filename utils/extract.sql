@@ -17,6 +17,11 @@ COPY (
          insee_pop.d75_pop,
          insee_pop.d68_pop,
          medrfuc10 as median,
+         insee_pop.d75_pop - insee_pop.d68_pop as augment1,
+         insee_pop.d82_pop - insee_pop.d75_pop as augment2,
+         insee_pop.d90_pop - insee_pop.d82_pop as augment3,
+         insee_pop.p99_pop - insee_pop.d90_pop as augment4,
+         insee_pop.p09_pop - insee_pop.p99_pop as augment5,
          nb_rp_app  * 100 / (nb_rp_app + nb_rp_aut + nb_rp_mi) as tx_appart
    FROM
          communes_simplifiees
