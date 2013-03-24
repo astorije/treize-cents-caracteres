@@ -1,7 +1,3 @@
-svg {
-  border: 1px solid red;
-}
-
 text {
   text-anchor: middle;
   font-family: "Courier_New_Bold";
@@ -67,7 +63,7 @@ header:after {
 
 #chooser {
   float: right;
-  text-align: center;
+  text-align: center; 
   padding-top: 10px;
 }
 
@@ -124,7 +120,7 @@ header:after {
 
 #map {
   width: 830px;
-  height: 470px;
+  height: 555px;
   margin: auto;
 }
 
