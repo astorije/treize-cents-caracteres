@@ -80,7 +80,7 @@ d3.csv("data/communes.csv", function(error, data) {
   global_data = data;
 
   data.forEach(function(d) {
-    var val = parseFloat(d.Surface);
+    var val = parseFloat(d.surf);
     coord = proj([d.lon, d.lat]);
     
     var g = svg.append("g")
@@ -93,7 +93,7 @@ d3.csv("data/communes.csv", function(error, data) {
   g.append("circle");
 
   g.append("text")
-    .text(d.NomCommune + " - " + val)
+    .text(d.nomcom + " - " + val)
     .style("fill", "black")
     .style("display", "none")
     .style("visibility", "hidden");
