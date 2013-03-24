@@ -27,6 +27,12 @@ var svg = d3.select("body").append("svg")
   .attr("height", height)
   .style("fill", "#ddd");
 
+  svg.append("image")
+  .attr("xlink:href", "idf.png")
+  .attr("width", width)
+  .attr("height", height)
+  .style("opacity", 0.5);
+
 
 d3.tsv("data/communes.csv", function(error, data) {
   data.forEach(function(d) {
@@ -36,8 +42,9 @@ d3.tsv("data/communes.csv", function(error, data) {
       .attr("transform", "translate(" + coord[0] + ", " + (height - coord[1]) + ")");
     
   g.append("circle")
-    .attr("r", 5)
-    .style("fill", "#ddd");
+    .attr("r", 7)
+    .style("fill", "#bbb")
+    .style("opacity", 0.5);
 
   g.append("text")
     .text("Truc")
