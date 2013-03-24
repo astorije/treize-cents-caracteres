@@ -94,7 +94,7 @@ $(document).ready(function() {
       .duration("2000")
       .delay(function(d, i) { return i; })
       .style("fill", "green")
-      .attr("r", 10);
+      ;//.attr("r", 10);
 
     return false;
   });
