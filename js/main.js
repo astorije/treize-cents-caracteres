@@ -6,21 +6,19 @@ var width = 830,
   max_lon = 3.55901796978031,
   min_lat = 48.1202959913403,
   max_lat = 49.2413960984924,
-  coord = [],
-  i= 0;
-
-latcos = Math.cos(48.5); 
-lon_width = (max_lon - min_lon) * latcos;
-lat_width = max_lat - min_lat;
+  lon_width = max_lon - min_lon,
+  lat_width = max_lat - min_lat;
 
 
+// Converts geographical coords to pixel coordinates
 function proj(coord){
-  var x = (coord[0] - min_lon) / lon_width * latcos;
+  var x = (coord[0] - min_lon) / lon_width;
   var y = (coord[1] - min_lat) / lat_width;
 
   return [x * width, y * height]; 
 }
 
+// Global variable containing the data to display. It is loaded from a CSV file
 var global_data;
 
 var colors = {
@@ -93,7 +91,7 @@ d3.csv("data/communes.csv", function(error, data) {
 
   data.forEach(function(d) {
     var val = parseFloat(d.surf);
-    coord = proj([d.lon, d.lat]);
+    var coord = proj([d.lon, d.lat]);
     
     var g = svg.append("g")
       .attr("transform", "translate(" + coord[0] + ", " + (height - coord[1]) + ")");
